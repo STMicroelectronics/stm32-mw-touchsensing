@@ -974,12 +974,14 @@ TSL_Bool_enum_T TSL_acq_TestFirstReferenceIsValid(TSL_ChannelData_T *pCh, TSL_tM
 
 #if defined(__IAR_SYSTEMS_ICC__) // IAR/EWARM
 #pragma optimize=low
+void SoftDelay(uint16_t val)
 #elif defined(__CC_ARM) // Keil/MDK-ARM
 #pragma O1
 #pragma Ospace
+void SoftDelay(uint16_t val)
 #elif defined(__GNUC__) // Atollic/True Studio + AC6/SW4STM32
 #pragma GCC push_options
-#pragma GCC optimize ("O0")
+void __attribute__((optimize("O0"))) SoftDelay(uint16_t val)
 #endif
 /**
   * @brief  Software delay (private routine)
@@ -987,7 +989,6 @@ TSL_Bool_enum_T TSL_acq_TestFirstReferenceIsValid(TSL_ChannelData_T *pCh, TSL_tM
   * With fHCLK = 32MHz: 1 = ~1탎, 50 = ~14탎, 100 = ~25탎, 200 = ~50탎
   * @retval None
   */
-void SoftDelay(uint16_t val)
 {
   __IO uint16_t idx;
   for (idx = val; idx > 0; idx--)
@@ -1005,8 +1006,7 @@ void SwSpreadSpectrum(void)
 __INLINE void SwSpreadSpectrum(void)
 #elif defined(__GNUC__) // Atollic/True Studio + AC6/SW4STM32
 #pragma GCC push_options
-#pragma GCC optimize ("O0")
-__INLINE void SwSpreadSpectrum(void)
+void __attribute__((optimize("O0"))) SwSpreadSpectrum(void)
 #endif
 /**
   * @brief  Spread Spectrum using a variable software delay.
@@ -1014,7 +1014,7 @@ __INLINE void SwSpreadSpectrum(void)
   * @retval None
   */
 {
-  uint8_t idx;
+  volatile uint8_t idx;
 
   SpreadCounter++;
 

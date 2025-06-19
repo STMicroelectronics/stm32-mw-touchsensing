@@ -51,8 +51,8 @@ On STM32 L0, L4, F0 and F3 we can have from 3 to 24 channels
 #error "TSLPRM_TOTAL_CHANNELS is out of range (1 .. MAX_CHANNEL)."
 #endif
 
-#if ((TSLPRM_TOTAL_BANKS < 1) || (TSLPRM_TOTAL_BANKS > 8))
-#error "TSLPRM_TOTAL_BANKS is out of range (1 .. 8)."
+#if ((TSLPRM_TOTAL_BANKS < 1) || (TSLPRM_TOTAL_BANKS > MAX_LINROT))
+#error "TSLPRM_TOTAL_BANKS is out of range (1 .. MAX_LINROT)."
 #endif
 
 #if ((TSLPRM_TOTAL_TOUCHKEYS < 0) || (TSLPRM_TOTAL_TOUCHKEYS > MAX_CHANNEL))
