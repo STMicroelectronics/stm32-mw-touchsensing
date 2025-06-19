@@ -819,7 +819,7 @@ void TSL_acq_BankStartAcq(void)
     RI->ASCR2 &= (uint32_t)(~(TSL_BankChannelConf[1]));
 
     /*it's better to implement this like that because it's much more faster than to put this test in the "while test" below */
-    if (MeasurementCounter > TSL_Params.AcqMax)
+    if (MeasurementCounter >= TSL_Params.AcqMax)
     {
       TSL_acq_GroupDone(GroupToCheck);
       __NOP();
