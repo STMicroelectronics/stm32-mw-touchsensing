@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_types.h
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains all general structures definition.
   ******************************************************************************
   * @attention
@@ -85,14 +85,6 @@ typedef enum
   TSL_BANK_STATUS_DISABLED = 0, /**< The bank is disabled */
   TSL_BANK_STATUS_ENABLED  = 1  /**< The bank is enabled */
 } TSL_BankStatus_enum_T;
-
-/** Zone status
-*/
-typedef enum
-{
-  TSL_ZONE_STATUS_DISABLED = 0, /**< The zone is disabled */
-  TSL_ZONE_STATUS_ENABLED  = 1  /**< The zone is enabled */
-}TSL_ZoneStatus_enum_T;
 
 #define TSL_OBJ_STATUS_ACQ_MASK   (0x01) /**< Associated to TSL_ObjStatus_enum_T */
 #define TSL_OBJ_STATUS_BURST_MASK (0x02) /**< Associated to TSL_ObjStatus_enum_T */

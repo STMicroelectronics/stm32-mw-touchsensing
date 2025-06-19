@@ -22,7 +22,7 @@ STMTouch Driver
 </span></b></p>
 <p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
 <p class=MsoNormal align=center style='line-height:center;line-height:normal'><span style='font-size:10.0pt'>
-Copyright © 2014 STMicroelectronics
+Copyright © 2016 STMicroelectronics
 </span></p>
 <p class=MsoNormal align=center style='line-height:center;line-height:normal'><span style='font-size:10.0pt'>
 Microcontrollers Division - Application Team
@@ -49,12 +49,73 @@ Update History</span></b></p></td></tr></table>
 style='margin-left:4cm;width:23%;background:rgb(51, 102, 255)'>
 <td align=left style='padding:0cm 5.4pt 0cm 5.4pt'>
 <p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span style='font-size:10.0pt;color:white'>
-V2.0.0  /  22-April-2014</span></b></p></td></tr></table>
+V2.2.0  /  01-February-2016</span></b></p></td></tr></table>
 <p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
 <p class=MsoNormal style='margin-left:4cm;line-height:normal'><b><u><span style='font-size:10.0pt'>
 Main Changes
 </span></u></b></p>
 </span>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Remove the "zone" feature (was only used on stm8tl5x devices). 
+</span>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Minor change in SoftDelay function (in tsl_acq.c file): add "volatile" for variable idx. 
+</span></p>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;&nbsp;</span></p>
+<table class=MsoNormal border=0 cellspacing=0 cellpadding=0 width=100%
+style='margin-left:4cm;width:23%;background:rgb(51, 102, 255)'>
+<td align=left style='padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span style='font-size:10.0pt;color:white'>
+V2.1.2  /  03-August-2015</span></b></p></td></tr></table>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
+<p class=MsoNormal style='margin-left:4cm;line-height:normal'><b><u><span style='font-size:10.0pt'>
+Main Changes
+</span></u></b></p>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Add TSL_acq_BankStartAcq_IT() function. 
+</span>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Remove no more used tsl_time_stm32l1xx.c/h files. 
+</span></p>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;&nbsp;</span></p>
+<table class=MsoNormal border=0 cellspacing=0 cellpadding=0 width=100%
+style='margin-left:4cm;width:23%;background:rgb(51, 102, 255)'>
+<td align=left style='padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span style='font-size:10.0pt;color:white'>
+V2.1.1  /  25-August-2014</span></b></p></td></tr></table>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
+<p class=MsoNormal style='margin-left:4cm;line-height:normal'><b><u><span style='font-size:10.0pt'>
+Main Changes
+</span></u></b></p>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Take into account the presence or not of GPIOE/F/G/H and HYSCR3/4 registers in STM32L1xx acquisition. 
+</span></p>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;&nbsp;</span></p>
+<table class=MsoNormal border=0 cellspacing=0 cellpadding=0 width=100%
+style='margin-left:4cm;width:23%;background:rgb(51, 102, 255)'>
+<td align=left style='padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span style='font-size:10.0pt;color:white'>
+V2.1.0  /  10-July-2014</span></b></p></td></tr></table>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
+<p class=MsoNormal style='margin-left:4cm;line-height:normal'><b><u><span style='font-size:10.0pt'>
+Main Changes
+</span></u></b></p>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+Add support of <b>STM32L1xx</b> hardware and software acquisitions: 
+</span>
+<p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:30.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8211;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
+ The systick must be initialized now in the user code. 
+</span></p>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;&nbsp;</span></p>
+<table class=MsoNormal border=0 cellspacing=0 cellpadding=0 width=100%
+style='margin-left:4cm;width:23%;background:rgb(51, 102, 255)'>
+<td align=left style='padding:0cm 5.4pt 0cm 5.4pt'>
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span style='font-size:10.0pt;color:white'>
+V2.0.0  /  22-April-2014</span></b></p></td></tr></table>
+<p class=MsoNormal style='line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
+<p class=MsoNormal style='margin-left:4cm;line-height:normal'><b><u><span style='font-size:10.0pt'>
+Main Changes
+</span></u></b></p>
 <p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:10.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8226;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
 Change API to be compliant with <b>STM32Cube</b> package: 
 </span>
@@ -62,7 +123,7 @@ Change API to be compliant with <b>STM32Cube</b> package:
  Support of <b>TSC</b> acquisition only. 
 </span>
 <p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:30.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8211;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
- The systick, the TSC peripheral and the IOs must be initialized now in the user code. 
+ The systick, the TSC peripheral and the touch-sensing IOs must be initialized now in the user code. 
 </span>
 <p class=MsoListParagraph style='margin-left:4cm;margin-right:4cm;text-indent:30.0pt;line-height:normal'><spanstyle='font-size:10.0pt;font-family:Symbol'>&#8211;<span style='font:7.0pt'>&nbsp;</span><span style='font-size:10.0pt'>
  The TSC parameters have been removed from the configuration file (renamed in tsl_conf.h). 
@@ -1364,9 +1425,9 @@ style='margin-left:4cm;margin-right:4cm;width:80%;background:rgb(51, 102, 255)'>
 <p class=MsoNormal style='text-align:center;line-height:normal'><span style='font-size:10.0pt'>
 For complete documentation on <b>STMTouch</b> microcontrollers please visit <a href=http://www.st.com/stmtouch> http://www.st.com/stmtouch</a></span></p>
 <p class=MsoNormal style='line-height:normal'><b><span style='font-size:10.0pt'>&nbsp;&nbsp;&nbsp;</span></b></p>
-<p class=MsoNormal align=right style='margin-right:1cm;line-height:normal'><span style='font-size:8.0pt'>Generated by RNcreator v2.4
+<p class=MsoNormal align=right style='margin-right:1cm;line-height:normal'><span style='font-size:8.0pt'>Generated by RNcreator v2.6
 </span></p>
-<!-- Generated by RNcreator v2.4 on 22/04/2014  -->
+<!-- Generated by RNcreator v2.6 on 2016-02-01 10:14:15 -->
 </div>
 </body>
 </html>

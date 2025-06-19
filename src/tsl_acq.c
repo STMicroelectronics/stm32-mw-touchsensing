@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_acq.c
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains all functions to manage the acquisition.
   ******************************************************************************
   * @attention
@@ -330,48 +330,5 @@ void TSL_acq_BankClearData(TSL_tIndex_T idx_bk)
     pchDest++; // Next channel
   }
 }
-
-
-#if TSLPRM_USE_ZONE > 0
-
-/**
-  * @brief Configures a Zone.
-  * @param[in] zone  Zone to configure
-  * @param[in] idx_bk  Bank index in the zone to configure
-  * @retval Status
-  */
-TSL_Status_enum_T TSL_acq_ZoneConfig(CONST TSL_Zone_T *zone, TSL_tIndex_T idx_bk)
-{
-  TSL_Status_enum_T retval;
-
-  if (idx_bk >= TSLPRM_TOTAL_BANKS)
-  {
-    return TSL_STATUS_ERROR;
-  }
-
-  TSL_Globals.This_Zone = zone;
-
-  do
-  {
-    retval = TSL_acq_BankConfig(zone->BankIndex[idx_bk]);
-    TSL_Globals.This_Bank = zone->BankIndex[idx_bk];
-    idx_bk++;
-  }
-  while ((idx_bk < zone->NbBanks) && (retval == TSL_STATUS_ERROR));
-
-  TSL_Globals.Index_In_This_Zone = idx_bk;
-
-#if TSLPRM_PXS_LOW_POWER_MODE > 0
-  if (idx_bk < zone->NbBanks)
-  {
-    resetPXSLowPower();
-  }
-#endif
-
-  return(retval);
-
-}
-
-#endif
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

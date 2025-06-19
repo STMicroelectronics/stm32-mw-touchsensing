@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_globals.h
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains external declarations of the tsl_globals.c file.
   ******************************************************************************
   * @attention
@@ -45,10 +45,6 @@ typedef struct
   TSL_tIndex_T         This_Bank;   /**< Pointer to the current Bank */
   CONST TSL_Object_T   *This_Obj;   /**< Pointer to the current Object */
   uint32_t             DelayDischarge; /**< Delay used to discharge all capacitors */
-#if TSLPRM_USE_ZONE > 0
-  CONST TSL_Zone_T     *This_Zone;         /**< Pointer to the current Zone */
-  TSL_tIndex_T         Index_In_This_Zone; /**< Index in the current Zone */
-#endif
 #if TSLPRM_TOTAL_TKEYS > 0
   CONST TSL_TouchKey_T *This_TKey; /**< Pointer to the current TKey */
 #endif

@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    tsl_conf_tsc_template.h
+  * @file    tsl_conf_stm32l1xx_template.h
   * @author  MCD Application Team
   * @version V2.2.0
   * @date    01-february-2016
-  * @brief   TSC configuration file.
+  * @brief   STM32L1xx configuration file.
   * @note    This file must be copied in the application folder with the 'tsl_conf.h' name.
   ******************************************************************************
   * @attention
@@ -108,11 +108,11 @@
 */
 #define TSLPRM_ACQ_MIN (10)
 
-/** Maximum acquisition measurement (range=255, 511, 1023, 2047, 8191, 16383)
+/** Maximum acquisition measurement (range=0..65535)
   - This is the maximum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is above this value.
 */
-#define TSLPRM_ACQ_MAX (8191)
+#define TSLPRM_ACQ_MAX (4000)
 
 /** @} Common_Parameters_Acquisition_Limits */
 
@@ -157,18 +157,18 @@
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (120)
+#define TSLPRM_TKEY_DETECT_IN_TH (20)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (110)
+#define TSLPRM_TKEY_DETECT_OUT_TH (15)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (120)
+#define TSLPRM_TKEY_CALIB_TH (20)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.
@@ -202,12 +202,12 @@
 /** Linear/Rotary Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_LINROT_DETECT_IN_TH (80)
+#define TSLPRM_LINROT_DETECT_IN_TH (20)
 
 /** Linear/Rotary Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_LINROT_DETECT_OUT_TH (75)
+#define TSLPRM_LINROT_DETECT_OUT_TH (15)
 
 /** Linear/Rotary re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
@@ -215,7 +215,7 @@
   - A low absolute value will result in a higher sensitivity and thus some spurious
     recalibration may be issued.
 */
-#define TSLPRM_LINROT_CALIB_TH (80)
+#define TSLPRM_LINROT_CALIB_TH (20)
 
 /** Linear/Rotary Delta normalization (0=No, 1=Yes)
   - When this parameter is set, a coefficient is applied on all Delta of all sensors
@@ -419,14 +419,6 @@
 */
 #define TSLPRM_TICK_FREQ (1000)
 
-/** Delay for discharging Cx and Cs capacitors (range=0..65535)
-    - The value corresponds to the Softdelay function parameter.
-    -  500 gives around  63 탎 delay whatever HCLK
-    - 1000 gives around 125 탎 delay whatever HCLK
-    - 2000 gives around 250 탎 delay whatever HCLK
-*/
-#define TSLPRM_DELAY_DISCHARGE_ALL (1000)
-
 /** IOs default mode when no on-going acquisition (range=0..1)
     - 0: Output push-pull low
     - 1: Input floating
@@ -440,11 +432,83 @@ be configured to output push-pull low (excepted for Linear sensors).
 /** @} Common_Parameters */
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++ MCU PARAMETERS +++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/** @defgroup STM32L1xx_Parameters STM32L1xx Parameters
+  * @{ */
+
+/** @defgroup STM32L1xx_Parameters_Misc 01 - Miscellaneous
+  * @{ */
+
+/** Shield with a channel (0=No, 1=Yes)
+*/
+#define TSLPRM_USE_SHIELD (1)
+
+/** Charge/transfer Period (in 탎) (= high pulse + low pulse)
+    - This is used to calculate the Timer reload value.
+@note For HW acquisition only
+  */
+#define TSLPRM_CT_PERIOD (2)
+
+/** Timer frequency (in MHz)
+    - This is used to calculate the Timer reload value.
+@note For HW acquisition only
+  */
+#define TSLPRM_TIMER_FREQ (32)
+
+/** Delay for transfering charges from Cx to Cs capacitor and then discharge Cx
+   (range=0..65535)
+   - 0: no delay (it takes about 2.8탎 for a CT cycle)
+   - (1..65535): delay (in 탎) = 0.75 * TSLPRM_DELAY_TRANSFER + 1
+@note for SW acquisition only
+*/
+#define TSLPRM_DELAY_TRANSFER (1)
+
+/**Use Spread Spectrum (0=No, 1=Yes)
+@note for SW acquisition only
+*/
+#define TSLPRM_USE_SPREAD_SPECTRUM (1)
+
+/** Spread min value (range=0..(TSLPRM_SPREAD_MAX-1))
+@note for SW acquisition only
+*/
+#define TSLPRM_SPREAD_MIN (1)
+
+/** Spread max value (range=2..255)
+@note for SW acquisition only
+*/
+#define TSLPRM_SPREAD_MAX (20)
+
+/** IT disabling for IO protection (range=0..1)
+    - 0: IO not protected
+    - 1: IO protected
+@note for SW acquisition only
+*/
+#define TSLPRM_PROTECT_IO_ACCESS (0)
+
+/** Which GPIO will be used (range=0..1)
+    - 0: Not used
+    - 1: Used
+@note for SW acquisition only
+*/
+#define TSLPRM_USE_GPIOA   (1)
+#define TSLPRM_USE_GPIOB   (1)
+#define TSLPRM_USE_GPIOC   (1)
+#define TSLPRM_USE_GPIOF   (0)
+#define TSLPRM_USE_GPIOG   (0)
+
+/** @} STM32L1xx_Parameters_Misc */
+
+/** @} STM32L1xx_Parameters */
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*+++++++++++++++++++++++++ MCU AND ACQUISITION SELECTION ++++++++++++++++++++*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-#include "stm32xxxx.h" /* Select the file corresponding to the device in use (i.e. stm32f3xx.h, stm32f0xx.h, ...) */
-#include "tsl_acq_tsc.h" /* The TSC acquisition is used for this device. Do not change it! */
+#include "stm32l1xx.h" /* Select the file corresponding to the device in use */
+#include "tsl_acq_stm32l1xx_hw.h" /* Select this file if hardware acquisition is used */
+//#include "tsl_acq_stm32l1xx_sw.h" /* Select this file if software acquisition is used */
 
 #endif /* __TSL_CONF_H */
 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_acq_tsc.c
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains all functions to manage the TSC acquisition.
   ******************************************************************************
   * @attention
@@ -128,10 +128,37 @@ void TSL_acq_BankStartAcq(void)
   TSC->CR |= (1 << 4);
 #endif
 
+  // Clear both EOA and MCE interrupts
+  TSC->IER &= (uint32_t)(~0x03);
+
   // Start acquisition
   TSC->CR |= 0x02;
 }
 
+/**
+  * @brief Start acquisition in Interrupt mode on a previously configured bank
+  * @param None
+  * @retval None
+  */
+void TSL_acq_BankStartAcq_IT(void)
+{
+  // Clear both EOAIC and MCEIC flags
+  TSC->ICR |= 0x03;
+
+  // Wait capacitors discharge
+  SoftDelay(TSL_Globals.DelayDischarge);
+
+#if TSLPRM_IODEF > 0 // Default = Input Floating
+  // Set IO default in Input Floating
+  TSC->CR |= (1 << 4);
+#endif
+
+  // Set both EOA and MCE interrupts
+  TSC->IER |= 0x03;
+  
+  // Start acquisition
+  TSC->CR |= 0x02;
+}
 
 /**
   * @brief Wait end of acquisition
@@ -258,8 +285,6 @@ TSL_Bool_enum_T TSL_acq_TestFirstReferenceIsValid(TSL_ChannelData_T *pCh, TSL_tM
 #elif defined(__CC_ARM) // Keil/MDK-ARM
 #pragma O1
 #pragma Ospace
-#elif defined(__TASKING__) // Altium/Tasking
-#pragma optimize O0
 #elif defined(__GNUC__) // Atollic/True Studio + Raisonance/RKit
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
@@ -275,12 +300,9 @@ TSL_Bool_enum_T TSL_acq_TestFirstReferenceIsValid(TSL_ChannelData_T *pCh, TSL_tM
   */
 void SoftDelay(uint32_t val)
 {
-  uint32_t idx;
+  volatile uint32_t idx;
   for (idx = val; idx > 0; idx--)
   {}
 }
-#if defined(__TASKING__)
-#pragma endoptimize
-#endif
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

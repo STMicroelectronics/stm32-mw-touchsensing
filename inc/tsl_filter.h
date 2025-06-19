@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_filter.h
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains external declarations of the tsl_filter.c file.
   ******************************************************************************
   * @attention

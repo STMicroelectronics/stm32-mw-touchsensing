@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    tsl_check_config.h
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    22-April-2014
+  * @version V2.2.0
+  * @date    01-february-2016
   * @brief   This file contains the check of all parameters defined in the
   *          common configuration file.
   ******************************************************************************
@@ -357,16 +357,6 @@
 
 #if ((TSLPRM_USE_PROX != 0) && (TSLPRM_USE_PROX != 1))
 #error "TSLPRM_USE_PROX is out of range (0 .. 1)."
-#endif
-
-//------------------------------------------------------------------------------
-
-#ifndef TSLPRM_USE_ZONE
-#error "TSLPRM_USE_ZONE is not defined."
-#endif
-
-#if ((TSLPRM_USE_ZONE != 0) && (TSLPRM_USE_ZONE != 1))
-#error "TSLPRM_USE_ZONE is out of range (0 .. 1)."
 #endif
 
 //------------------------------------------------------------------------------
