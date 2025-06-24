@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 20020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -598,8 +597,8 @@ void TSL_acq_BankStartAcq(void)
   __enable_irq();
 #endif
 
-  /* Wait a while for a good discharging of all capacitors */  
-  SoftDelay(50); // ~14탎 with fHCLK = 32MHz
+  /* Wait a while for a good discharging of all capacitors */
+  SoftDelay(50); // ~14us with fHCLK = 32MHz
   //this time depends of the size of the sampling capacitor
 
 #if (TSLPRM_PROTECT_IO_ACCESS > 0)
@@ -676,7 +675,7 @@ void TSL_acq_BankStartAcq(void)
 #endif
 
     /* Wait a while for a good charging (programmable delay) */
-#if ( TSLPRM_DELAY_TRANSFER > 0 )    
+#if ( TSLPRM_DELAY_TRANSFER > 0 )
     SoftDelay(TSLPRM_DELAY_TRANSFER);
 #endif
 
@@ -684,7 +683,7 @@ void TSL_acq_BankStartAcq(void)
 #if (TSLPRM_USE_SPREAD_SPECTRUM > 0)
     SwSpreadSpectrum();
 #endif
-    
+
     /* test GPIOx->IDR bit + group configuration for each channel */
 
 #if (TSLPRM_USE_GPIOA)
@@ -804,11 +803,11 @@ void TSL_acq_BankStartAcq(void)
     RI->ASCR1 |= (TSL_BankChannelConf[0]);
     RI->ASCR2 |= (TSL_BankChannelConf[1]);
 
-    /* Wait a while for a good charge transfering (programmable delay) */
-#if ( TSLPRM_DELAY_TRANSFER > 0 )    
+    /* Wait a while for a good charge transferring (programmable delay) */
+#if ( TSLPRM_DELAY_TRANSFER > 0 )
     SoftDelay(TSLPRM_DELAY_TRANSFER);
 #endif
-    
+
     RI->ASCR1 &= (uint32_t)(~(TSL_BankChannelConf[0]));
     RI->ASCR2 &= (uint32_t)(~(TSL_BankChannelConf[1]));
 
@@ -980,7 +979,7 @@ void __attribute__((optimize("O0"))) SoftDelay(uint16_t val)
 /**
   * @brief  Software delay (private routine)
   * @param  val Wait delay
-  * With fHCLK = 32MHz: 1 = ~1탎, 50 = ~14탎, 100 = ~25탎, 200 = ~50탎
+  * With fHCLK = 32MHz: 1 = ~1us, 50 = ~14us, 100 = ~25us, 200 = ~50us
   * @retval None
   */
 {
@@ -992,7 +991,7 @@ void __attribute__((optimize("O0"))) SoftDelay(uint16_t val)
 #if (TSLPRM_USE_SPREAD_SPECTRUM > 0)
 #if defined(__IAR_SYSTEMS_ICC__) // IAR/EWARM
 #pragma optimize=low
-// inline keyword for IAR Compiler is only available in High optimization mode! 
+// inline keyword for IAR Compiler is only available in High optimization mode!
 void SwSpreadSpectrum(void)
 #elif defined(__CC_ARM) // Keil/MDK-ARM
 #pragma O1
@@ -1022,6 +1021,3 @@ void __attribute__((optimize("O0"))) SwSpreadSpectrum(void)
   while (--idx) {}
 }
 #endif
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
